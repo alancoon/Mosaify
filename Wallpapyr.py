@@ -32,8 +32,8 @@ class Wallpapyr(object):
             raise Exception
 
     def initialize_spotipy(self):
-        self.SPOTIPY_CLIENT_ID = '<YOUR SPOTIPY CLIENT ID>'
-        self.SPOTIPY_CLIENT_SECRET = '<YOUR SPOTIPY CLIENT SECRET>'
+        self.SPOTIPY_CLIENT_ID = '<YOUR SPOTIFY CLIENT ID>'
+        self.SPOTIPY_CLIENT_SECRET = '<YOUR SPOTIFY CLIENT SECRET>'
         self.SPOTIPY_REDIRECT_URI = 'http://localhost:8080'
 
     def authenticate(self):
@@ -99,9 +99,9 @@ class Wallpapyr(object):
         quality_index = self.quality_resolver(self.quality)
         (height, width) = self.quality_index_resolver(quality_index)
 
-        mosaic = Image.new('RGB', (columns * width, rows * height))
-        for i in range(0, columns * width, width):
-            for j in range(0, rows * height, height):
+        mosaic = Image.new('RGB', (int(columns * width), int(rows * height)))
+        for i in range(0, int(columns * width), width):
+            for j in range(0, int(rows * height), height):
                 if albums:
                     current_album = albums.pop(0)
                     print('Requesting album art for URI:', current_album[0])
